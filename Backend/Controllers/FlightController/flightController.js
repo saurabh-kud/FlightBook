@@ -85,6 +85,33 @@ const removeFlight = asyncHandler(async (req, res) => {
   }
 });
 
+
+
+//get all flights
+
+const getAllFlight = asyncHandler(async (req,res) => {
+  try {
+    const flightsToSearch = await flight.find({
+      
+      availableSeats: {
+        $gt: 0,
+      },
+    });
+
+    if (!flightsToSearch) {
+      throw new Error("flight not available");
+    }
+
+    res.json({
+      status: "true",
+      message: "fetched sucessfully",
+      data: flightsToSearch,
+    });
+  } catch (error) {
+    throw new Error(error);
+  }
+})
+
 // searching flight
 
 const searchFlight = asyncHandler(async (req, res) => {
@@ -135,4 +162,5 @@ module.exports = {
   addFlight,
   removeFlight,
   searchFlight,
+  getAllFlight
 };

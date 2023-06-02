@@ -1,6 +1,7 @@
 const express = require("express");
 const connectDB = require("./config/db");
 const cors = require("cors");
+const path = require("path");
 const errorHandler = require("./Middlewares/ErrorHandlerMiddleware/errorHandlerMiddleware");
 
 const app = express();
@@ -19,18 +20,27 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 connectDB();
 
-app.get("/", (req, res) => {
-  res.send({ msg: "you are on right path keep going " });
-});
+// app.get("/", (req, res) => {
+//   res.send({ msg: "you are on right path keep going " });
+// });
 
 app.use("/api/user", require("./Routes/UserRoutes/userRoute"));
 
 //adding flight route
 
-app.use("/api/flight",require("./Routes/FlightRoute/flightRoute"));
+app.use("/api/flight", require("./Routes/FlightRoute/flightRoute"));
 
-// app.use("/api/booking", require("./Routes/BookingRoute/bookingRoute"));
+app.use("/api/booking", require("./Routes/BookingRoute/bookingRoute"));
 
+// Serve frontend
+
+app.use(express.static(path.join(__dirname, "../frontend/build")));
+
+app.get("*", (req, res) =>
+  res.sendFile(
+    path.resolve(__dirname, "../", "frontend", "build", "index.html")
+  )
+);
 
 app.use(errorHandler);
 

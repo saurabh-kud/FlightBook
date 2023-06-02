@@ -3,6 +3,7 @@ const flight = require("../../Models/FlightModel/flightModel");
 const booking = require("../../Models/BookingModel/bookingModel");
 const asyncHandler = require("express-async-handler");
 
+//booking flight for user
 const bookFlight = asyncHandler(async (req, res) => {
   const userId = req.params.id;
   const { flightId } = req.body;
@@ -55,7 +56,7 @@ const bookFlight = asyncHandler(async (req, res) => {
     throw new Error(error.message);
   }
 });
-
+//get booked flight of that particular user
 const getBookedFlight = asyncHandler(async (req, res) => {
   const userId = req.params.id;
 
@@ -83,17 +84,39 @@ const getBookedFlight = asyncHandler(async (req, res) => {
   }
 });
 
+//get all booked flight only access by admin
+
+const getAllBooked = asyncHandler(async (req, res) => {
+  try {
+    const bookedFlight = await booking.find();
+    if (bookedFlight.length <= 0) {
+      res.status(404);
+      throw new Error("no booked flight available");
+    }
+
+    res.status(200).json({
+      status: true,
+      message: " fetched succefully",
+      data: bookedFlight,
+    });
+  } catch (error) {
+    console.log(error);
+    throw new Error("internal server error");
+  }
+});
+
 // show all flight which mached the createria only access by admin
 const getByAdminBookedFlight = asyncHandler(async (req, res) => {
-  
   const { flightNumber, date } = req.query;
   const datenew = new Date(date);
-  
+
   try {
-    const bookedFlight = await booking.find({ flightNumber,  departureTime: {
-      $gte: datenew,
-      
-    }, });
+    const bookedFlight = await booking.find({
+      flightNumber,
+      departureTime: {
+        $gte: datenew,
+      },
+    });
     if (bookedFlight.length <= 0) {
       res.status(404);
       throw new Error("no fligth booked");
@@ -110,4 +133,9 @@ const getByAdminBookedFlight = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { bookFlight, getBookedFlight, getByAdminBookedFlight };
+module.exports = {
+  bookFlight,
+  getBookedFlight,
+  getAllBooked,
+  getByAdminBookedFlight,
+};

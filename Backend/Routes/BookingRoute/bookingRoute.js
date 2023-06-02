@@ -2,6 +2,7 @@ const {
   bookFlight,
   getBookedFlight,
   getByAdminBookedFlight,
+  getAllBooked,
 } = require("../../Controllers/BookingController/bookingController");
 const {
   auth,
@@ -14,6 +15,6 @@ router.post("/:id/book", auth, bookFlight);
 
 router.get("/:id/book", auth, getBookedFlight);
 router.post("/admin/book", authAdmin, getByAdminBookedFlight);
-//   router.get("/:id/order/:orderid", auth, getSingleOrder);
+router.get("/admin/bookingall", authAdmin, getAllBooked);
 
 module.exports = router;

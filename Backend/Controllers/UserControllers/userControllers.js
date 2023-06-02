@@ -47,6 +47,7 @@ const register = asyncHandler(async (req, res) => {
           lname: user.lname,
           email: user.email,
           phone: user.phone,
+          isAdmin:user.isAdmin,
 
           accessToken: accesstoken,
           refreshToken: refreshToken,
@@ -96,6 +97,7 @@ const login = asyncHandler(async (req, res) => {
         lname: available.lname,
         email: available.email,
         phone: available.phone,
+        isAdmin:available.isAdmin,
 
         accessToken,
         refreshToken,
