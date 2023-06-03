@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getContact, reset } from "../features/ContactUser/contactSlice";
 
 import ContactCard from "../Components/ContactCard";
 import "../css/register.css";
@@ -39,7 +38,7 @@ const DashboardAdmin = () => {
     fetchAllFlight();
 
     return () => {
-      dispatch(reset());
+      
     };
   }, [user, dispatch, navigate]);
 

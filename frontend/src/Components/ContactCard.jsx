@@ -1,9 +1,7 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { deleteContact } from "../features/ContactUser/contactSlice";
+
 import "../css/contactCard.css";
-import { FaRegTrashAlt, FaEdit } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -36,20 +34,23 @@ const ContactCard = ({ con }) => {
 
   return (
     <div className="card">
-      <h3>{con.flightName}</h3>
+      <h3>Flight Name: {con.flightName}</h3>
       <small>Flight Number: {con.flightNumber}</small>
-      <h2>Departure Time: {con.departureTime}</h2>
-      <h2>Arrival Time: {con.arrivalTime}</h2>
-      <h2>Price: {con.price}</h2>
+      <h5>Departure Time: {con?.departureTime}</h5>
+      <h5>Arrival Time: {con.arrivalTime}</h5>
+      <h3>Price: {con.price}</h3>
 
       {user?.isAdmin ? (
         <div>
-          <h2>UserId: {con.userId}</h2>
+          <small>UserId: {con.userId}</small>
         </div>
       ) : (
         <div>
           <small>Origin: {con.origin}</small>
+          <br />
           <small>Destination: {con.destination}</small>
+          <br />
+          <br />
           <div className="flex">
             <button onClick={handleBooking}>Book </button>
           </div>

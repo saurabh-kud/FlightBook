@@ -7,8 +7,7 @@ import Register from "./Pages/Register";
 import Login from "./Pages/Login";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import AddContact from "./Components/AddContact";
-import EditContact from "./Components/EditContact";
+
 import { useSelector } from "react-redux";
 import DashboardAdmin from "./Pages/DashboardAdmin";
 import AddFlight from "./Components/AddFlight";

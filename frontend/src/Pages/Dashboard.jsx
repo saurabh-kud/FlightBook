@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getContact, reset } from "../features/ContactUser/contactSlice";
 
 import ContactCard from "../Components/ContactCard";
 import "../css/register.css";
@@ -30,10 +29,6 @@ const Dashboard = () => {
       }
     };
     fetchAllFlight();
-
-    return () => {
-      dispatch(reset());
-    };
   }, [user, dispatch, navigate]);
 
   // if (isLoading) {
@@ -73,7 +68,9 @@ const Dashboard = () => {
       </section>
 
       <section>
-        <form action="">
+        <h1 className="h1">Search Flights</h1>
+
+        <form>
           <label>select date </label>
           <input
             type="datetime-local"
@@ -82,9 +79,10 @@ const Dashboard = () => {
             value={formData}
             name="leaveEndTime"
           />
-
+          <br />
+          <br />
           <button className="add" onClick={handleSubmit}>
-            Add Contact
+            Search
           </button>
         </form>
       </section>

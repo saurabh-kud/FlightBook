@@ -46,8 +46,6 @@ const addFlight = asyncHandler(async (req, res) => {
       const formattedDepartureTime = departureTime.toLocaleString();
       const formattedArrivalTime = arrivalTime.toLocaleString();
 
-      console.log("Departure Time:", formattedDepartureTime);
-      console.log("Arrival Time:", formattedArrivalTime);
       res.status(201).json({
         message: "flight added sucessfully",
 
@@ -127,8 +125,6 @@ const searchFlight = asyncHandler(async (req, res) => {
   const combinedDateTime = new Date(year, month - 1, day, hour, minute, second);
   const combinedDateTimeNew = new Date(year, month - 1, (Number(day)+1), hour, minute, second);
 
-  console.log(combinedDateTime.toISOString());
-  console.log(combinedDateTimeNew);
 
   try {
     const flightsToSearch = await flight.find({

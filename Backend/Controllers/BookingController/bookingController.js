@@ -15,7 +15,6 @@ const bookFlight = asyncHandler(async (req, res) => {
 
   try {
     const isflightAvailable = await flight.findById(flightId);
-    console.log(isflightAvailable);
 
     if (!isflightAvailable) {
       res.status(404);
@@ -79,7 +78,6 @@ const getBookedFlight = asyncHandler(async (req, res) => {
       data: bookedFlight,
     });
   } catch (error) {
-    console.log(error);
     throw new Error("internal server error");
   }
 });
@@ -100,7 +98,6 @@ const getAllBooked = asyncHandler(async (req, res) => {
       data: bookedFlight,
     });
   } catch (error) {
-    console.log(error);
     throw new Error("internal server error");
   }
 });

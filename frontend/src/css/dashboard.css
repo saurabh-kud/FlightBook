@@ -17,6 +17,7 @@ button:hover {
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .main {
