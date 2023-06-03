@@ -19,13 +19,16 @@
 ## types of user
 
 - normal user
-- demo account
 
-### email: `sk@gmail.com` pass: `test@123`
+- demo account you can regiter also to test
+
+#### email: `sk@gmail.com` pass: `test@123`
 
 - admin
 
-### email: `test@gmail.com` pass: `test@123`
+- demo account
+
+#### email: `test@gmail.com` pass: `test@123`
 
 ## user use Cases
 
